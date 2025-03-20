@@ -41,6 +41,12 @@
     combos {
         compatible = "zmk,combos";
 
+        com_semi {
+            bindings = <&kp SEMI>;
+            key-positions = <34 35>;
+            layers = <0>;
+        };
+
         Copy {
             bindings = <&kp LC(INSERT)>;
             key-positions = <3 2 4>;
