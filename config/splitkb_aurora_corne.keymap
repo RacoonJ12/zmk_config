@@ -36,6 +36,40 @@
             require-prior-idle-ms = <150>;
             flavor = "tap-preferred";
         };
+
+        caps_word: caps_word {
+            compatible = "zmk,behavior-caps-word";
+            label = "CAPS_WORD";
+            #binding-cells = <0>;
+            continue-list = <MINUS UNDERSCORE DELETE BACKSPACE>;
+        };
+
+        ht: ht {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HT";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <100>;
+        };
+
+        sk: sk {
+            compatible = "zmk,behavior-sticky-key";
+            label = "SK";
+            bindings = <&kp>;
+            #binding-cells = <1>;
+            release-after-ms = <1000>;
+        };
+
+        td_caps: td_caps {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_CAPS";
+            #binding-cells = <0>;
+            bindings = <&kp LSHFT>, <&caps_word>;
+
+            tapping-term-ms = <200>;
+        };
     };
 
     combos {
@@ -185,9 +219,9 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB    &kp W             &kp L        &kp Y                &kp P              &kp B        &kp F      &kp J               &kp O                 &kp U             &kp SEMICOLON     &kp ESCAPE
-&kp LCTRL  &hml LEFT_META C  &hml LALT R  &hml LEFT_CONTROL S  &hml LEFT_SHIFT T  &kp G        &kp M      &hmr RIGHT_SHIFT N  &hmr RIGHT_CONTROL E  &hmr RIGHT_ALT I  &hmr RIGHT_GUI A  &kp SQT
-&kp LSHFT  &kp Q             &kp Z        &kp V                &kp D              &kp K        &kp X      &kp H               &kp SLASH             &kp COMMA         &kp PERIOD        &key_repeat
+&kp TAB    &kp Q             &kp W        &kp F                &kp P              &kp G        &kp J      &kp L               &kp U                 &kp Y             &kp SEMICOLON     &gresc
+&kp LCTRL  &hml LEFT_META A  &hml LALT R  &hml LEFT_CONTROL S  &hml LEFT_SHIFT T  &kp D        &kp H      &hmr RIGHT_SHIFT N  &hmr RIGHT_CONTROL E  &hmr RIGHT_ALT I  &hmr RIGHT_GUI O  &kp SQT
+&kp LSHFT  &kp Z             &kp X        &kp C                &kp V              &kp B        &kp K      &kp M               &kp SLASH             &kp COMMA         &kp PERIOD        &caps_word
                                           &lt 3 LEFT_ALT       &mo 1              &kp SPACE    &kp ENTER  &lt 4 BACKSPACE     &lt 2 LEFT_GUI
             >;
         };
@@ -229,10 +263,10 @@
         fun {
             display-name = "FUNCTIONS";
             bindings = <
-&trans  &kp F12  &kp F7  &kp F8  &kp N9  &trans    &trans      &kp N7        &kp N8        &kp N9        &trans        &ext_power EP_ON
-&trans  &kp F11  &kp F4  &kp F5  &kp F6  &trans    &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans
-&trans  &kp F10  &kp F1  &kp F2  &kp F3  &trans    &trans      &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans        &bootloader
-                         &trans  &trans  &trans    &trans      &trans        &trans
+&trans  &kp F12  &kp F7  &kp F8  &kp N9  &trans    &trans          &kp N7        &kp N8        &kp N9        &trans        &ext_power EP_ON
+&trans  &kp F11  &kp F4  &kp F5  &kp F6  &trans    &bt BT_CLR      &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &trans
+&trans  &kp F10  &kp F1  &kp F2  &kp F3  &trans    &studio_unlock  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans        &bootloader
+                         &trans  &trans  &trans    &trans          &trans        &trans
             >;
 
             label = "FUNCTION";
@@ -242,7 +276,7 @@
             display-name = "SYMBOLS";
             bindings = <
 &trans  &kp TILDE  &kp DOLLAR     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp PERCENT    &trans    &kp DOUBLE_QUOTES  &kp LESS_THAN  &kp GREATER_THAN  &kp GRAVE        &trans
-&studio_unlock  &kp UNDER  &kp COLON      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp PIPE       &kp HASH  &kp EQUAL          &kp MINUS      &kp PLUS          &kp EXCLAMATION  &trans
+&trans  &kp UNDER  &kp COLON      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp PIPE       &kp HASH  &kp EQUAL          &kp MINUS      &kp PLUS          &kp EXCLAMATION  &trans
 &trans  &trans     &kp AMPERSAND  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp AT_SIGN    &kp AMPS  &kp SLASH          &kp ASTERISK   &kp BACKSLASH     &kp CARET        &trans
                                   &trans                &trans                 &trans         &trans    &trans             &trans
             >;
