@@ -123,7 +123,7 @@
         };
 
         chin {
-            bindings = <&kp EXCLAMATION>;
+            bindings = <&kp LS(NUMBER_1)>;
             key-positions = <25 26 15>;
         };
 
